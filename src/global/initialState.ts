@@ -128,6 +128,7 @@ export const INITIAL_GLOBAL_STATE: GlobalState = {
       archived: {},
       saved: {},
     },
+    selfMessagesCountById: {},
   },
 
   messages: {

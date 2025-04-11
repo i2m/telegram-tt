@@ -85,6 +85,7 @@ import {
   updateChatLastMessageId,
   updateChatListSecondaryInfo,
   updateChats,
+  updateChatSelfMessagesCount,
   updateChatsLastMessageId,
   updateListedTopicIds,
   updateManagementProgress,
@@ -2896,6 +2897,23 @@ addActionHandler('requestCollectibleInfo', async (global, actions, payload): Pro
       peerId,
     },
   }, tabId);
+  setGlobal(global);
+});
+
+addActionHandler('countMessagesInChat', async (global, actions, payload): Promise<void> => {
+  const { chatId, fromId } = payload;
+
+  const chat = selectChat(global, chatId);
+  if (!chat) return;
+
+  const user = selectUser(global, fromId);
+  if (!user) return;
+
+  const result = await callApi('countMessagesInChat', { peer: chat, from: user });
+  if (!result) return;
+
+  global = getGlobal();
+  global = updateChatSelfMessagesCount(global, chatId, result.count);
   setGlobal(global);
 });
 

@@ -1031,6 +1031,10 @@ export interface ActionPayloads {
   fetchChat: {
     chatId: string;
   };
+  countMessagesInChat: {
+    chatId: string;
+    fromId: string;
+  };
   loadChannelRecommendations: {
     chatId?: string;
   };

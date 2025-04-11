@@ -180,6 +180,21 @@ export function updateChat<T extends GlobalState>(
   });
 }
 
+export function updateChatSelfMessagesCount<T extends GlobalState>(
+  global: T, chatId: string, count: number,
+): T {
+  return {
+    ...global,
+    chats: {
+      ...global.chats,
+      selfMessagesCountById: {
+        ...global.chats.selfMessagesCountById,
+        [chatId]: count,
+      },
+    },
+  };
+}
+
 export function updateChatFullInfo<T extends GlobalState>(
   global: T, chatId: string, fullInfoUpdate: Partial<ApiChatFullInfo>,
 ): T {

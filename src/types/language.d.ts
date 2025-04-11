@@ -1450,6 +1450,7 @@ export interface LangPair {
   'DescriptionRestrictedMedia': undefined;
   'DescriptionScheduledPaidMediaNotAllowed': undefined;
   'DescriptionScheduledPaidMessagesNotAllowed': undefined;
+  'ChatSelfMessagesCounting': undefined;
 }
 
 export interface LangPairWithVariables<V extends unknown = LangVariable> {

@@ -225,6 +225,10 @@ function unsafeMigrateCache(cached: GlobalState, initialState: GlobalState) {
     cached.chats.lastMessageIds = initialState.chats.lastMessageIds;
   }
 
+  if (!cached.chats.selfMessagesCountById) {
+    cached.chats.selfMessagesCountById = initialState.chats.selfMessagesCountById;
+  }
+
   // Clear old color storage to optimize cache size
   if (untypedCached?.appConfig?.peerColors) {
     untypedCached.appConfig.peerColors = undefined;

@@ -52,6 +52,10 @@ export function selectChatUser<T extends GlobalState>(global: T, chat: ApiChat) 
   return selectUser(global, userId);
 }
 
+export function selectChatSelfMessagesCount<T extends GlobalState>(global: T, chatId: string) {
+  return global.chats.selfMessagesCountById[chatId];
+}
+
 export function selectIsChatWithSelf<T extends GlobalState>(global: T, chatId: string) {
   return chatId === global.currentUserId;
 }

@@ -1894,3 +1894,4 @@
 "DescriptionRestrictedMedia" = "Posting media content is not allowed in this group.";
 "DescriptionScheduledPaidMediaNotAllowed" = "Posting scheduled paid media content is not allowed";
 "DescriptionScheduledPaidMessagesNotAllowed" = "Scheduled paid messages is not allowed";
+"ChatSelfMessagesCounting" = "Counting messages...";

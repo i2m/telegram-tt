@@ -73,6 +73,7 @@ import ChatFolderModal from '../ChatFolderModal.async';
 import MuteChatModal from '../MuteChatModal.async';
 import ChatBadge from './ChatBadge';
 import ChatCallStatus from './ChatCallStatus';
+import ChatSelfMessagesCountBadge from './ChatSelfMessagesCountBadge';
 
 import './Chat.scss';
 
@@ -386,6 +387,7 @@ const Chat: FC<OwnProps & StateProps> = ({
         </div>
         <div className="subtitle">
           {renderSubtitle()}
+          {!isForum && !user?.isSelf && <ChatSelfMessagesCountBadge chatId={chatId} />}
           {!isPreview && (
             <ChatBadge
               chat={chat}

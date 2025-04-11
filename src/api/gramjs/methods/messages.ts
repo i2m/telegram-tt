@@ -1206,6 +1206,37 @@ export async function fetchDiscussionMessage({
   };
 }
 
+export async function countMessagesInChat({
+  peer,
+  from,
+}: {
+  peer: ApiChat;
+  from: ApiUser;
+}): Promise<{ count: number } | undefined> {
+  const inputPeer = buildInputPeer(peer.id, peer.accessHash);
+  const fromPeer = buildInputPeer(from.id, from.accessHash);
+  const filter = new GramJs.InputMessagesFilterEmpty();
+
+  const result = await invokeRequest(new GramJs.messages.Search({
+    peer: inputPeer,
+    fromId: fromPeer,
+    filter,
+    limit: 0, // only return the message counter
+    q: '',
+  }));
+
+  if (result && (
+    result instanceof GramJs.messages.MessagesSlice
+    || result instanceof GramJs.messages.DialogsSlice
+    || result instanceof GramJs.messages.ChannelMessages)) {
+    return { count: result.count };
+  } else if (result instanceof GramJs.messages.Messages) {
+    return { count: 0 };
+  } else {
+    return undefined;
+  }
+}
+
 export async function searchMessagesInChat({
   peer, isSavedDialog, savedTag, type, query = '', threadId, minDate, maxDate, ...pagination
 }: {
